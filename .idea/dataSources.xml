@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2967783939">
+    <data-source source="LOCAL" name="Rails backchannelApp: development" uuid="cbeba485-13da-4223-b2b1-1e48bf79e661">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\adamg_000\Dropbox\NC State\Spring '14\CSC 517 - OOP\rubyProject\backchannelApp\db\development.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
