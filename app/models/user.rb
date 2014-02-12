@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   validates :name, presence: true
   REGEX_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: REGEX_EMAIL },
