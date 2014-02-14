@@ -5,11 +5,14 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    @comments = Comment.all
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @comments = Comment.where(:post_id=>@post.id)
+
   end
 
   # GET /posts/new

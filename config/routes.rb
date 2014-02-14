@@ -4,6 +4,7 @@ BackchannelApp::Application.routes.draw do
   resources :posts
   resources :sessions
   resources :users
+  resources :comments
   root :to=> 'users#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
