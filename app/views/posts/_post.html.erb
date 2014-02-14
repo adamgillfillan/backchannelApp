@@ -3,5 +3,8 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(post.created_at) %> ago.
   </span>
+  <br/>
   <%= link_to 'Show', post %>
+  <%= if( session[:user_id] && session[:user_id] = post.user_id); link_to 'Edit', edit_post_path(post) ; end %>
+  <%= if( session[:user_id] && session[:user_id] = post.user_id); link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } ; end %>
 </li>

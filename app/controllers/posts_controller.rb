@@ -28,6 +28,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user = User.find session[:user_id]
 
     respond_to do |format|
       if @post.save
