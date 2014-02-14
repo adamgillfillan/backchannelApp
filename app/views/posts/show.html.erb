@@ -19,7 +19,8 @@
           <%= render @comments %>
         </ul>
   </span>
-<%= link_to 'New Comment', new_comment_path(:post_id => @post.id)  %><br/>
+<%= if session[:user_id];  link_to 'New Comment', new_comment_path(:post_id => @post.id); end%>
+<%=   %><br/>
 <br/>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
