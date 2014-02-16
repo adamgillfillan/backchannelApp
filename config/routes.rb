@@ -1,11 +1,20 @@
 BackchannelApp::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
-  resources :posts
+  resources :posts do
+    member do
+      get :upvote
+    end
+  end
   resources :sessions
   resources :users
-  resources :comments
+  resources :comments do
+    member do
+      get :upvote
+    end
+  end
   resources :post_votes
+  resources :comment_votes
   root :to=> 'users#new'
 
   # The priority is based upon order of creation: first created -> highest priority.

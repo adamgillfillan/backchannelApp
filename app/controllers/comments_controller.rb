@@ -17,6 +17,22 @@ class CommentsController < ApplicationController
     flash[:post_id] = Post.find params[:post_id]
   end
 
+  def upvote
+    @comment_vote = CommentVote.new
+    @comment_vote.user = User.find session[:user_id]
+    @comment = Comment.find params[:id]
+    @comment_vote.comment = @comment
+
+    respond_to do |format|
+      if @comment_vote.save
+        format.html { redirect_to post_path(@comment.post), notice: 'Post successfully upvoted.' }
+        format.json { render action: 'index', status: :created, location: @comment.post }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def create
     @comment = Comment.new(comment_params)

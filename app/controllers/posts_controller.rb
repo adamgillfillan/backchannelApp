@@ -20,6 +20,23 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def upvote
+    @post_vote = PostVote.new
+    @post_vote.user = User.find session[:user_id]
+    @post_vote.post = Post.find params[:id]
+
+    respond_to do |format|
+      if @post_vote.save
+        format.html { redirect_to post_path, notice: 'Post successfully upvoted.' }
+        format.json { render action: 'show', status: :created, location: @post }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+    index
+  end
+
   # GET /posts/1/edit
   def edit
   end

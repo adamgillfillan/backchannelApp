@@ -3,4 +3,9 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(comment.created_at) %> ago.
   </span>
+  <br/>
+  <span class="votes">
+     <%= if(session[:user_id] && comment.upvoteable(session[:user_id])); link_to '↑', upvote_comment_path(comment); end %>   Upvotes: <%=comment.up_votes%>
+
+  </span>
 </li>

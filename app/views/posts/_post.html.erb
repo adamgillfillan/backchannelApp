@@ -5,10 +5,11 @@
   </span>
   <br/>
   <span class="votes">
-    Upvotes: <%=post.up_votes%>
-    </span>
+     <%= if(session[:user_id] && post.upvoteable(session[:user_id])); link_to '↑', upvote_post_path(post); end %>   Upvotes: <%=post.up_votes%>
+
+  </span>
   <br/>
   <%= link_to 'Show', post %>
-  <%= if( session[:user_id] && session[:user_id] = post.user_id); link_to 'Edit', edit_post_path(post) ; end %>
-  <%= if( session[:user_id] && session[:user_id] = post.user_id); link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } ; end %>
+  <%= if( session[:user_id] && session[:user_id] == post.user_id); link_to 'Edit', edit_post_path(post) ; end %>
+  <%= if( session[:user_id] && session[:user_id] == post.user_id); link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } ; end %>
 </li>
