@@ -4,6 +4,10 @@
     Posted <%= time_ago_in_words(post.created_at) %> ago.
   </span>
   <br/>
+  <span class="User">
+    Posted by <%= post.user.name %>
+  </span>
+  <br/>
   <span class="votes">
      <%= if(session[:user_id] && post.upvoteable(session[:user_id])); link_to '↑', upvote_post_path(post); end %>   Upvotes: <%=post.up_votes%>
 
