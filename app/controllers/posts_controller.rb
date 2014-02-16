@@ -5,6 +5,8 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    @posts.sort!{|a,b| a.activity <=> b.activity}
+    @posts.reverse!
     @comments = Comment.all
   end
 

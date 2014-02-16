@@ -18,4 +18,21 @@ class Post < ActiveRecord::Base
     @post_vote.save
   end
 
+  def activity
+    @votes_from_posts = self.up_votes
+    @votes_from_comments = 0
+    self.comments.each {|c| @votes_from_comments += c.up_votes}
+    @activity = (@votes_from_comments + @votes_from_posts)
+    puts "total votes: " + @activity.to_s
+    @time_difference = self.created_at.to_time - Time.now.to_time
+    puts "Time difference is: " + @time_difference.to_s;
+    if (@time_difference < 86400)
+      @activity+= 5
+    end
+    else if (@time_difference < 604800)
+      @activity+= 2
+         end
+    return @activity
+  end
+
 end
