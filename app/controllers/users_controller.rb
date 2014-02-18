@@ -25,7 +25,9 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    if (!@user.admin)
+    if(params[:admin])
+      @user.admin = params[:admin]
+    else
       @user.admin = 0
     end
     respond_to do |format|
