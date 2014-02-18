@@ -28,4 +28,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def is_admin
+    self.admin > 0
+  end
+
 end

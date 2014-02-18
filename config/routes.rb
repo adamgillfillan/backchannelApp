@@ -6,6 +6,7 @@ BackchannelApp::Application.routes.draw do
       get :upvote
     end
   end
+  resources :categories
   resources :sessions
   resources :users
   resources :comments do
