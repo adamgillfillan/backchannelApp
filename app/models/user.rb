@@ -32,4 +32,8 @@ class User < ActiveRecord::Base
     self.admin > 0
   end
 
+  def is_super_admin
+    self.admin > 1
+  end
+
 end

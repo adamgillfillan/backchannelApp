@@ -8,18 +8,27 @@ class PostsController < ApplicationController
     @posts.sort!{|a,b| a.activity <=> b.activity}
     @posts.reverse!
     @comments = Comment.all
+    @current_user = session[:user_id] ? User.find( session[:user_id]) : nil
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
     @comments = Comment.where(:post_id=>@post.id)
+    puts "Comment ID is: " + @post.id.to_s
+    @category_posts = CategoryPost.where(:post_id=>@post.id)
+    @categories = []
+    @category_posts.each do |c|
+      puts "Category name is: " + c.category.name
+      @categories << c.category.name;
+    end
 
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+    @categories = Category.where(:pending => false)
   end
 
   def upvote
@@ -48,16 +57,36 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = User.find session[:user_id]
-
+    @chosen_categories = params[:categories]
     respond_to do |format|
-      if @post.save
+      if @chosen_categories && @post.save
+
+        #save the categories
+        @chosen_categories.each do |c|
+          @category_post = CategoryPost.new
+          @category_post.post = @post
+          @category_post.category = Category.find c
+          @category_post.save
+        end
+
+        #end save
+
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        if(!@chosen_categories)
+          puts 'error4a'
+          format.html { render action: 'new' }
+          puts 'error4b'
+          format.json { render json: @post.errors << "1 or more categories required.", status: :unprocessable_entity }
+          puts 'error4c'
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
     end
+
   end
 
   # PATCH/PUT /posts/1

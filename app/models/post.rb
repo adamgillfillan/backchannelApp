@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_many :comments
   has_many :post_votes
+  has_many :category_posts
   validates :user_id, presence: true
   validates :content, presence: true
   def up_votes

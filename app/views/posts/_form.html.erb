@@ -11,6 +11,12 @@
     </div>
   <% end %>
 
+  <%if :categories %>
+    <div class="field">
+        <%= f.label :categories %><br>
+        <%= select_tag :'categories', options_from_collection_for_select(@categories, "id", "name"), multiple: true %>
+    </div>
+  <% end %>
   <div class="field">
     <%= f.label :content %><br>
     <%= f.text_field :content %>

@@ -7,8 +7,16 @@
 
 <p>
   <strong>User:</strong>
-  <%= @post.user_id %>
+  <%= @post.user.name %>
 </p>
+
+<p>
+  <strong>Categories:</strong>
+  <%= @categories.each do |t| %>
+      <%= puts t %>
+  <% end %>
+</p>
+
 <br/>
 <span class="comments header">Comments:</span>
 <br/>

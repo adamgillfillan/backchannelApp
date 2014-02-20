@@ -1,6 +1,8 @@
 <h1>Listing posts</h1>
 
 <table>
+
+  <% if @current_user && @current_user.is_admin %>
   <thead>
     <tr>
       <th>Content</th>
@@ -10,7 +12,9 @@
       <th></th>
     </tr>
   </thead>
+  <% end %>
 
+  <% if @current_user && @current_user.is_admin %>
   <tbody>
     <% @posts.each do |post| %>
       <tr>
@@ -22,6 +26,7 @@
       </tr>
     <% end %>
   </tbody>
+<% end %>
   <ul class="posts">
     <%= render @posts %>
   </ul>
