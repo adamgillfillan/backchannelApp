@@ -21,7 +21,7 @@
           <%= link_to "Log in", log_in_path %>
       <% end %>
       <p><%=if current_user; link_to "Show Categories", categories_path; end;%></p>
-      <p><%=if is_admin; link_to 'Show Users', users_path; end;%></p>
+      <p><%= link_to 'Show Users', users_path%></p>
       <p><%= link_to "Show Posts", posts_path %></p>
     </div>
 

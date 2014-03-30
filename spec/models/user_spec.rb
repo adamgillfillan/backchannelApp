@@ -10,6 +10,10 @@ describe User do
     it 'should create a User from Name and Email' do
       @user.should be_an_instance_of User
     end
-  it 'should have an encrypted password'
+  end
+  it 'should have an encrypted password' do
+    @user.password = "123"
+    @user.encrypt_password
+    @user.password != @user.password_hash
   end
 end

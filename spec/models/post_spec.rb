@@ -9,7 +9,7 @@ describe Post do
       @post.should be_an_instance_of Post
     end
   end
-  it 'should have an activity based on votes, comment votes, time elapsed'
-  it 'should decay in activity over time'
-
+  it 'should have an activity based on votes, comment votes, time elapsed' do
+      @post.activity
+  end
 end
